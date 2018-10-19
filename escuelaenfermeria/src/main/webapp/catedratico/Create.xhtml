@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CatedraticoCreateDlg" widgetVar="CatedraticoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateCatedraticoTitle}">
+            <h:form id="CatedraticoCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{catedraticoController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateCatedraticoLabel_idcatedratico}" for="idcatedratico" />
+                        <p:inputText id="idcatedratico" value="#{catedraticoController.selected.idcatedratico}" title="#{bundle.CreateCatedraticoTitle_idcatedratico}" required="true" requiredMessage="#{bundle.CreateCatedraticoRequiredMessage_idcatedratico}"/>
+                        <p:outputLabel value="#{bundle.CreateCatedraticoLabel_nombrecatedratico}" for="nombrecatedratico" />
+                        <p:inputText id="nombrecatedratico" value="#{catedraticoController.selected.nombrecatedratico}" title="#{bundle.CreateCatedraticoTitle_nombrecatedratico}" required="true" requiredMessage="#{bundle.CreateCatedraticoRequiredMessage_nombrecatedratico}"/>
+                        <p:outputLabel value="#{bundle.CreateCatedraticoLabel_apellidocatedratico}" for="apellidocatedratico" />
+                        <p:inputText id="apellidocatedratico" value="#{catedraticoController.selected.apellidocatedratico}" title="#{bundle.CreateCatedraticoTitle_apellidocatedratico}" required="true" requiredMessage="#{bundle.CreateCatedraticoRequiredMessage_apellidocatedratico}"/>
+                        <p:outputLabel value="#{bundle.CreateCatedraticoLabel_fechanacimiento}" for="fechanacimiento" />
+                        <p:calendar id="fechanacimiento" pattern="MM/dd/yyyy" value="#{catedraticoController.selected.fechanacimiento}" title="#{bundle.EditCatedraticoTitle_fechanacimiento}" required="true" requiredMessage="#{bundle.EditCatedraticoRequiredMessage_fechanacimiento}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateCatedraticoLabel_sexo}" for="sexo" />
+                        <p:inputText id="sexo" value="#{catedraticoController.selected.sexo}" title="#{bundle.CreateCatedraticoTitle_sexo}" required="true" requiredMessage="#{bundle.CreateCatedraticoRequiredMessage_sexo}"/>
+                        <p:outputLabel value="#{bundle.CreateCatedraticoLabel_dpi}" for="dpi" />
+                        <p:inputText id="dpi" value="#{catedraticoController.selected.dpi}" title="#{bundle.CreateCatedraticoTitle_dpi}" required="true" requiredMessage="#{bundle.CreateCatedraticoRequiredMessage_dpi}"/>
+                        <p:outputLabel value="#{bundle.CreateCatedraticoLabel_direccioncatedratico}" for="direccioncatedratico" />
+                        <p:inputText id="direccioncatedratico" value="#{catedraticoController.selected.direccioncatedratico}" title="#{bundle.CreateCatedraticoTitle_direccioncatedratico}" required="true" requiredMessage="#{bundle.CreateCatedraticoRequiredMessage_direccioncatedratico}"/>
+                        <p:outputLabel value="#{bundle.CreateCatedraticoLabel_telefono}" for="telefono" />
+                        <p:inputText id="telefono" value="#{catedraticoController.selected.telefono}" title="#{bundle.CreateCatedraticoTitle_telefono}" required="true" requiredMessage="#{bundle.CreateCatedraticoRequiredMessage_telefono}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{catedraticoController.create}" value="#{bundle.Save}" update="display,:CatedraticoListForm:datalist,:growl" oncomplete="handleSubmit(args,'CatedraticoCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CatedraticoCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ExpedienteEditDlg" widgetVar="ExpedienteEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditExpedienteTitle}">
+            <h:form id="ExpedienteEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{expedienteController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditExpedienteLabel_idexpediente}" for="idexpediente" />
+                        <p:inputText id="idexpediente" value="#{expedienteController.selected.idexpediente}" title="#{bundle.EditExpedienteTitle_idexpediente}" required="true" requiredMessage="#{bundle.EditExpedienteRequiredMessage_idexpediente}"/>
+                        <p:outputLabel value="#{bundle.EditExpedienteLabel_estado}" for="estado" />
+                        <p:inputText id="estado" value="#{expedienteController.selected.estado}" title="#{bundle.EditExpedienteTitle_estado}" required="true" requiredMessage="#{bundle.EditExpedienteRequiredMessage_estado}"/>
+                        <p:outputLabel value="#{bundle.EditExpedienteLabel_fechacreacion}" for="fechacreacion" />
+                        <p:calendar id="fechacreacion" pattern="MM/dd/yyyy" value="#{expedienteController.selected.fechacreacion}" title="#{bundle.EditExpedienteTitle_fechacreacion}" required="true" requiredMessage="#{bundle.EditExpedienteRequiredMessage_fechacreacion}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditExpedienteLabel_memo}" for="memo" />
+                        <p:inputText id="memo" value="#{expedienteController.selected.memo}" title="#{bundle.EditExpedienteTitle_memo}" required="true" requiredMessage="#{bundle.EditExpedienteRequiredMessage_memo}"/>
+                        <p:outputLabel value="#{bundle.EditExpedienteLabel_idalumno}" for="idalumno" />
+                        <p:selectOneMenu id="idalumno" value="#{expedienteController.selected.idalumno}" required="true" requiredMessage="#{bundle.EditExpedienteRequiredMessage_idalumno}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{alumnoController.itemsAvailableSelectOne}"
+                                           var="idalumnoItem"
+                                           itemValue="#{idalumnoItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{expedienteController.update}" value="#{bundle.Save}" update="display,:ExpedienteListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ExpedienteEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ExpedienteEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

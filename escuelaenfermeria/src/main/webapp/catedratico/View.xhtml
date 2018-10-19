@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CatedraticoViewDlg" widgetVar="CatedraticoViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewCatedraticoTitle}">
+            <h:form id="CatedraticoViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{catedraticoController.selected != null}">
+                        <h:outputText value="#{bundle.ViewCatedraticoLabel_idcatedratico}"/>
+                        <h:outputText value="#{catedraticoController.selected.idcatedratico}" title="#{bundle.ViewCatedraticoTitle_idcatedratico}"/>
+                        <h:outputText value="#{bundle.ViewCatedraticoLabel_nombrecatedratico}"/>
+                        <h:outputText value="#{catedraticoController.selected.nombrecatedratico}" title="#{bundle.ViewCatedraticoTitle_nombrecatedratico}"/>
+                        <h:outputText value="#{bundle.ViewCatedraticoLabel_apellidocatedratico}"/>
+                        <h:outputText value="#{catedraticoController.selected.apellidocatedratico}" title="#{bundle.ViewCatedraticoTitle_apellidocatedratico}"/>
+                        <h:outputText value="#{bundle.ViewCatedraticoLabel_fechanacimiento}"/>
+                        <h:outputText value="#{catedraticoController.selected.fechanacimiento}" title="#{bundle.ViewCatedraticoTitle_fechanacimiento}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewCatedraticoLabel_sexo}"/>
+                        <h:outputText value="#{catedraticoController.selected.sexo}" title="#{bundle.ViewCatedraticoTitle_sexo}"/>
+                        <h:outputText value="#{bundle.ViewCatedraticoLabel_dpi}"/>
+                        <h:outputText value="#{catedraticoController.selected.dpi}" title="#{bundle.ViewCatedraticoTitle_dpi}"/>
+                        <h:outputText value="#{bundle.ViewCatedraticoLabel_direccioncatedratico}"/>
+                        <h:outputText value="#{catedraticoController.selected.direccioncatedratico}" title="#{bundle.ViewCatedraticoTitle_direccioncatedratico}"/>
+                        <h:outputText value="#{bundle.ViewCatedraticoLabel_telefono}"/>
+                        <h:outputText value="#{catedraticoController.selected.telefono}" title="#{bundle.ViewCatedraticoTitle_telefono}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="CatedraticoViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

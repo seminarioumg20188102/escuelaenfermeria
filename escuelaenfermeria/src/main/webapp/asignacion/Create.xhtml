@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AsignacionCreateDlg" widgetVar="AsignacionCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateAsignacionTitle}">
+            <h:form id="AsignacionCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{asignacionController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateAsignacionLabel_idasignacion}" for="idasignacion" />
+                        <p:inputText id="idasignacion" value="#{asignacionController.selected.idasignacion}" title="#{bundle.CreateAsignacionTitle_idasignacion}" required="true" requiredMessage="#{bundle.CreateAsignacionRequiredMessage_idasignacion}"/>
+                        <p:outputLabel value="#{bundle.CreateAsignacionLabel_fechaasignacion}" for="fechaasignacion" />
+                        <p:calendar id="fechaasignacion" pattern="MM/dd/yyyy" value="#{asignacionController.selected.fechaasignacion}" title="#{bundle.EditAsignacionTitle_fechaasignacion}" required="true" requiredMessage="#{bundle.EditAsignacionRequiredMessage_fechaasignacion}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateAsignacionLabel_idalumno}" for="idalumno" />
+                        <p:selectOneMenu id="idalumno" value="#{asignacionController.selected.idalumno}" required="true" requiredMessage="#{bundle.EditAsignacionRequiredMessage_idalumno}">
+                            <f:selectItems value="#{alumnoController.itemsAvailableSelectOne}"
+                                           var="idalumnoItem"
+                                           itemValue="#{idalumnoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateAsignacionLabel_idaula}" for="idaula" />
+                        <p:selectOneMenu id="idaula" value="#{asignacionController.selected.idaula}" required="true" requiredMessage="#{bundle.EditAsignacionRequiredMessage_idaula}">
+                            <f:selectItems value="#{aulaController.itemsAvailableSelectOne}"
+                                           var="idaulaItem"
+                                           itemValue="#{idaulaItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateAsignacionLabel_idcatedratico}" for="idcatedratico" />
+                        <p:selectOneMenu id="idcatedratico" value="#{asignacionController.selected.idcatedratico}" required="true" requiredMessage="#{bundle.EditAsignacionRequiredMessage_idcatedratico}">
+                            <f:selectItems value="#{catedraticoController.itemsAvailableSelectOne}"
+                                           var="idcatedraticoItem"
+                                           itemValue="#{idcatedraticoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateAsignacionLabel_idcurso}" for="idcurso" />
+                        <p:selectOneMenu id="idcurso" value="#{asignacionController.selected.idcurso}" required="true" requiredMessage="#{bundle.EditAsignacionRequiredMessage_idcurso}">
+                            <f:selectItems value="#{cursoController.itemsAvailableSelectOne}"
+                                           var="idcursoItem"
+                                           itemValue="#{idcursoItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{asignacionController.create}" value="#{bundle.Save}" update="display,:AsignacionListForm:datalist,:growl" oncomplete="handleSubmit(args,'AsignacionCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="AsignacionCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

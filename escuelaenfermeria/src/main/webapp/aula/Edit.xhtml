@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AulaEditDlg" widgetVar="AulaEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditAulaTitle}">
+            <h:form id="AulaEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{aulaController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditAulaLabel_idaula}" for="idaula" />
+                        <p:inputText id="idaula" value="#{aulaController.selected.idaula}" title="#{bundle.EditAulaTitle_idaula}" required="true" requiredMessage="#{bundle.EditAulaRequiredMessage_idaula}"/>
+                        <p:outputLabel value="#{bundle.EditAulaLabel_capacidadaula}" for="capacidadaula" />
+                        <p:inputText id="capacidadaula" value="#{aulaController.selected.capacidadaula}" title="#{bundle.EditAulaTitle_capacidadaula}" required="true" requiredMessage="#{bundle.EditAulaRequiredMessage_capacidadaula}"/>
+                        <p:outputLabel value="#{bundle.EditAulaLabel_descripcionaula}" for="descripcionaula" />
+                        <p:inputText id="descripcionaula" value="#{aulaController.selected.descripcionaula}" title="#{bundle.EditAulaTitle_descripcionaula}" required="true" requiredMessage="#{bundle.EditAulaRequiredMessage_descripcionaula}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{aulaController.update}" value="#{bundle.Save}" update="display,:AulaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'AulaEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="AulaEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AlumnoCreateDlg" widgetVar="AlumnoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateAlumnoTitle}">
+            <h:form id="AlumnoCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{alumnoController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateAlumnoLabel_idalumno}" for="idalumno" />
+                        <p:inputText id="idalumno" value="#{alumnoController.selected.idalumno}" title="#{bundle.CreateAlumnoTitle_idalumno}" required="true" requiredMessage="#{bundle.CreateAlumnoRequiredMessage_idalumno}"/>
+                        <p:outputLabel value="#{bundle.CreateAlumnoLabel_nombres}" for="nombres" />
+                        <p:inputText id="nombres" value="#{alumnoController.selected.nombres}" title="#{bundle.CreateAlumnoTitle_nombres}" required="true" requiredMessage="#{bundle.CreateAlumnoRequiredMessage_nombres}"/>
+                        <p:outputLabel value="#{bundle.CreateAlumnoLabel_apellidos}" for="apellidos" />
+                        <p:inputText id="apellidos" value="#{alumnoController.selected.apellidos}" title="#{bundle.CreateAlumnoTitle_apellidos}" required="true" requiredMessage="#{bundle.CreateAlumnoRequiredMessage_apellidos}"/>
+                        <p:outputLabel value="#{bundle.CreateAlumnoLabel_fechanacimiento}" for="fechanacimiento" />
+                        <p:calendar id="fechanacimiento" pattern="MM/dd/yyyy" value="#{alumnoController.selected.fechanacimiento}" title="#{bundle.EditAlumnoTitle_fechanacimiento}" required="true" requiredMessage="#{bundle.EditAlumnoRequiredMessage_fechanacimiento}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateAlumnoLabel_direccionalumno}" for="direccionalumno" />
+                        <p:inputText id="direccionalumno" value="#{alumnoController.selected.direccionalumno}" title="#{bundle.CreateAlumnoTitle_direccionalumno}" required="true" requiredMessage="#{bundle.CreateAlumnoRequiredMessage_direccionalumno}"/>
+                        <p:outputLabel value="#{bundle.CreateAlumnoLabel_sexo}" for="sexo" />
+                        <p:inputText id="sexo" value="#{alumnoController.selected.sexo}" title="#{bundle.CreateAlumnoTitle_sexo}" required="true" requiredMessage="#{bundle.CreateAlumnoRequiredMessage_sexo}"/>
+                        <p:outputLabel value="#{bundle.CreateAlumnoLabel_dpi}" for="dpi" />
+                        <p:inputText id="dpi" value="#{alumnoController.selected.dpi}" title="#{bundle.CreateAlumnoTitle_dpi}" required="true" requiredMessage="#{bundle.CreateAlumnoRequiredMessage_dpi}"/>
+                        <p:outputLabel value="#{bundle.CreateAlumnoLabel_yearcursado}" for="yearcursado" />
+                        <p:inputText id="yearcursado" value="#{alumnoController.selected.yearcursado}" title="#{bundle.CreateAlumnoTitle_yearcursado}" required="true" requiredMessage="#{bundle.CreateAlumnoRequiredMessage_yearcursado}"/>
+                        <p:outputLabel value="#{bundle.CreateAlumnoLabel_fechaingreso}" for="fechaingreso" />
+                        <p:calendar id="fechaingreso" pattern="MM/dd/yyyy" value="#{alumnoController.selected.fechaingreso}" title="#{bundle.EditAlumnoTitle_fechaingreso}" required="true" requiredMessage="#{bundle.EditAlumnoRequiredMessage_fechaingreso}" showOn="button"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{alumnoController.create}" value="#{bundle.Save}" update="display,:AlumnoListForm:datalist,:growl" oncomplete="handleSubmit(args,'AlumnoCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="AlumnoCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

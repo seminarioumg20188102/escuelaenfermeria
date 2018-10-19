@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AlumnoViewDlg" widgetVar="AlumnoViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewAlumnoTitle}">
+            <h:form id="AlumnoViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{alumnoController.selected != null}">
+                        <h:outputText value="#{bundle.ViewAlumnoLabel_idalumno}"/>
+                        <h:outputText value="#{alumnoController.selected.idalumno}" title="#{bundle.ViewAlumnoTitle_idalumno}"/>
+                        <h:outputText value="#{bundle.ViewAlumnoLabel_nombres}"/>
+                        <h:outputText value="#{alumnoController.selected.nombres}" title="#{bundle.ViewAlumnoTitle_nombres}"/>
+                        <h:outputText value="#{bundle.ViewAlumnoLabel_apellidos}"/>
+                        <h:outputText value="#{alumnoController.selected.apellidos}" title="#{bundle.ViewAlumnoTitle_apellidos}"/>
+                        <h:outputText value="#{bundle.ViewAlumnoLabel_fechanacimiento}"/>
+                        <h:outputText value="#{alumnoController.selected.fechanacimiento}" title="#{bundle.ViewAlumnoTitle_fechanacimiento}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewAlumnoLabel_direccionalumno}"/>
+                        <h:outputText value="#{alumnoController.selected.direccionalumno}" title="#{bundle.ViewAlumnoTitle_direccionalumno}"/>
+                        <h:outputText value="#{bundle.ViewAlumnoLabel_sexo}"/>
+                        <h:outputText value="#{alumnoController.selected.sexo}" title="#{bundle.ViewAlumnoTitle_sexo}"/>
+                        <h:outputText value="#{bundle.ViewAlumnoLabel_dpi}"/>
+                        <h:outputText value="#{alumnoController.selected.dpi}" title="#{bundle.ViewAlumnoTitle_dpi}"/>
+                        <h:outputText value="#{bundle.ViewAlumnoLabel_yearcursado}"/>
+                        <h:outputText value="#{alumnoController.selected.yearcursado}" title="#{bundle.ViewAlumnoTitle_yearcursado}"/>
+                        <h:outputText value="#{bundle.ViewAlumnoLabel_fechaingreso}"/>
+                        <h:outputText value="#{alumnoController.selected.fechaingreso}" title="#{bundle.ViewAlumnoTitle_fechaingreso}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="AlumnoViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
